@@ -10,5 +10,34 @@
 </head>
 <body>
   <app-root></app-root>
+  <div id="firstDiv">
+    <form onSubmit ="return greetWorld();">
+      Please enter your last name.
+      <br>
+      <input type="text" id="lastNameField">
+      <input type="submit" value="Submit Form">
+      <input type="button" value="Click" id="button1">
+    </form>
+  </div>
+
+<script>
+
+var b1 = document.getElementById("button1");
+b1.onclick = sayHello;
+
+function sayHello() {
+  alert("Hello");
+}
+
+function greetWorld(){
+  try {
+    throw "This is a test throw";
+  } catch(err) {
+    alert(err);
+  }
+}
+
+</script>
+
 </body>
 </html>
