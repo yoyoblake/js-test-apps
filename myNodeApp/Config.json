@@ -1,0 +1,17 @@
+{
+    "log": [
+        {
+          "type": "console-pretty",
+          "level": "info"
+        },
+        {
+          "type": "file",
+          "path": "FullFile.log"
+        },
+        {
+            "type": "file-pretty",
+            "path": "ErrorFile.log",
+            "level": "error"
+        }
+      ]
+}

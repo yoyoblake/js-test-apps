@@ -6,29 +6,32 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var conf = require('./conf');
+var config = require('config-json');
+config.load('Config.json');
 
 var app = express();
 
 var bunyan = require('bunyan');
 var bunyanStreamsConfig = require('bunyan-streams-config');
+var loggerConfig = config.get('log');
 
 logger = bunyan.createLogger({
   name: "base",
-  streams: [
-    {
-      level: 'info',
-      stream: process.stdout            // log INFO and above to stdout
-    },
-    {
-      level: 'error',
-      path: 'ErrorFile.log'  // log ERROR and above to a file
-    },
-    {
-      level: 'info',
-      path: 'FullFile.log'  // log ERROR and above to a file
-    }
-  ]
+  streams: bunyanStreamsConfig(loggerConfig)
+  // streams: [
+  //   {
+  //     level: 'info',
+  //     stream: process.stdout            // log INFO and above to stdout
+  //   },
+  //   {
+  //     level: 'error',
+  //     path: 'ErrorFile.log'  // log ERROR and above to a file
+  //   },
+  //   {
+  //     level: 'info',
+  //     path: 'FullFile.log'  // log ERROR and above to a file
+  //   }
+  // ]
 })
 
 // view engine setup
